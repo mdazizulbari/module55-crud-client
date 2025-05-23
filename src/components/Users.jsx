@@ -1,4 +1,6 @@
 import React, { use, useState } from "react";
+import { Link } from "react-router";
+import "../index.css"
 
 const Users = ({ usersPromise }) => {
   const initialUsers = use(usersPromise);
@@ -45,6 +47,7 @@ const Users = ({ usersPromise }) => {
       });
   };
 
+
   return (
     <div>
       {/* add user */}
@@ -63,6 +66,8 @@ const Users = ({ usersPromise }) => {
         {users.map((user) => (
           <p key={user._id}>
             {user.name} : {user.email}
+            <Link to={`/users/${user._id}`}>Details</Link>
+            <Link to={`/update/${user._id}`}>Edit</Link>
             <button onClick={() => handleUserDelete(user._id)}>X</button>
           </p>
         ))}
